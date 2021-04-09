@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Provider from "./Provider";
 import App from "./App";
 import { createStore } from "./redux";
-
+import combineReducers from "./reducers/index"
 // reducer
 const reducer = (state = { value: 0 }, action) => {
     switch (action.type) {
@@ -16,8 +16,8 @@ const reducer = (state = { value: 0 }, action) => {
     }
 };
 
-const store = createStore(reducer);
-
+const store = createStore(combineReducers);
+window.store = store
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(

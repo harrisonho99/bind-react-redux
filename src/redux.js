@@ -1,4 +1,4 @@
-export const createStore = (reducer) => {
+export const createStore = (reducer, defaultState) => {
     // check type reducer
     if (typeof reducer !== "function") {
         throw Error("Reducer is required as a function and return state");
@@ -7,14 +7,19 @@ export const createStore = (reducer) => {
     let state;
     let newState;
     let listenerArray = [];
-    // init internal  state with dummy action
-    state = reducer(undefined, {});
 
+    //check if has default state
+    if (typeof defaultState === "object") {
+        state = defaultState
+    } else {
+        // if not init internal state with dummy action
+        state = reducer(undefined, {});
+    }
     // setState return copy of state for  prevent mutate the internal state
     const getState = () => {
         return JSON.parse(JSON.stringify(state));
     };
-    //subscribe take argguments of functions
+    //subscribe take arggument of functions
     function subscribe() {
         const listOfListener = Array.from(arguments);
         listOfListener.forEach((listener) => {
