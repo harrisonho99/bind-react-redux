@@ -80,7 +80,5 @@ export const createStore = (reducer, defaultState, middleware) => {
         }
 
     };
-
-
     return store
 };
