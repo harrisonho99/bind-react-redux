@@ -16,7 +16,6 @@ function coloredLogger(
         );
     }
 }
-
 //logger middleware
 const loggerMiddleware = (storeAPI) => {
     return function wrapperDispatch(next) {
