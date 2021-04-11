@@ -10,7 +10,7 @@ that, this may not predictable anymore.
 👎 It may not necessary to install both (react-redux, redux) packages. 
 
 
-👍 Improve create your custom middleware with ease
+👍 Improve create your custom middleware with ease.
 
  
 
@@ -21,11 +21,10 @@ Using git:
 git clone https://github.com/hotsnow199/bind-react-redux
 ```
 
-## Experimental Usage
-
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to update tests as appropriate.
+
+## Experimental Usage
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
