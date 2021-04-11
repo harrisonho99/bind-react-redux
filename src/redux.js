@@ -47,7 +47,7 @@ export const createStore = (reducer, defaultState, middleware) => {
         });
     }
 
-    //next
+    //next middleware
     function next(action) {
         if (!(index > listMiddleware.length - 1)) {
             index++
