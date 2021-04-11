@@ -23,7 +23,6 @@ export const createStore = (reducer, defaultState, middleware) => {
         listMiddleware.forEach(singleMidleware => {
             queueMiddleware.push(singleMidleware(store)(next))
         })
-
     }
 
     //check if has default state
