@@ -1,5 +1,5 @@
 import "./styles.css";
-import { connect } from "./connect"
+import { connect } from "../connect"
 function App(props) {
     const { state, dispatch } = props
     return (

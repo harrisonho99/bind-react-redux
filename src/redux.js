@@ -1,4 +1,4 @@
-export const createStore = (reducer, defaultState) => {
+export const createStore = (reducer, defaultState, middleware) => {
     // check type reducer
     if (typeof reducer !== "function") {
         throw Error("Reducer is required as a function and return state");
@@ -7,6 +7,24 @@ export const createStore = (reducer, defaultState) => {
     let state;
     let newState;
     let listenerArray = [];
+    let isApplymiddleware = false
+    let listMiddleware
+    let index = 0
+    let queueMiddleware = []
+    var store = {
+        getState,
+        subscribe,
+        dispatch
+    };
+    // check valid applyMiddleware
+    if (typeof middleware === "function" && middleware.name === "$SPEACIAL$MIDDLEWARE$TRANSPOTER") {
+        isApplymiddleware = true
+        listMiddleware = middleware()
+        listMiddleware.forEach(singleMidleware => {
+            queueMiddleware.push(singleMidleware(store)(next))
+        })
+
+    }
 
     //check if has default state
     if (typeof defaultState === "object") {
@@ -16,7 +34,7 @@ export const createStore = (reducer, defaultState) => {
         state = reducer(undefined, {});
     }
     // setState return copy of state for  prevent mutate the internal state
-    const getState = () => {
+    function getState() {
         return JSON.parse(JSON.stringify(state));
     };
     //subscribe take arggument of functions
@@ -30,24 +48,39 @@ export const createStore = (reducer, defaultState) => {
         });
     }
 
+    //next
+    function next(action) {
+        if (!(index > listMiddleware.length - 1)) {
+            index++
+        }
+        dispatch(action)
+    }
     //dispatch take action as argument
-    const dispatch = (action) => {
-        newState = reducer(state, action);
-        // compare the ref of newState and internalState
-        if (newState !== state) {
-            state = newState;
-            if (listenerArray.length > 0) {
-                // invoke all listener
-                listenerArray.forEach((listener) => {
-                    listener();
-                });
+    function dispatch(action) {
+        /*if middleware has applied,
+        store will not dispatch immediately,
+        instead it have piped to middlewares*/
+        if (isApplymiddleware && !(index > listMiddleware.length - 1)) {
+            queueMiddleware[index](action)
+        }
+        else {
+            index = 0
+            newState = reducer(state, action);
+            /* compare the reference of newState and oldState,
+            if not strictly equal invoke all subscribers */
+            if (newState !== state) {
+                state = newState;
+                if (listenerArray.length > 0) {
+                    listenerArray.forEach((listener) => {
+                        listener();
+                    });
+                }
+
             }
         }
+
     };
 
-    return {
-        getState,
-        subscribe,
-        dispatch
-    };
+
+    return store
 };
