@@ -1,11 +1,13 @@
 import "./styles.css";
+import { asyncDecrement } from "../actionCreators/asyncDecrement"
+import { asyncIncrement } from "../actionCreators/asyncIncrement"
 import { connect } from "../bind_react/connect"
 function App(props) {
     const { state, dispatch } = props
     return (
         <div className="App">
             <button onClick={() => {
-                dispatch({ type: "INCREMENT" })
+                dispatch(asyncIncrement())
             }}>
                 INCREMENT
             </button>
@@ -13,7 +15,7 @@ function App(props) {
                 {state.value}
             </h1>
             <button onClick={() => {
-                dispatch({ type: "DECREMENT" })
+                dispatch(asyncDecrement())
             }}>
                 DECREMENT
             </button>
