@@ -2,6 +2,9 @@ import "./styles.css";
 import { asyncDecrement } from "../actionCreators/asyncDecrement"
 import { asyncIncrement } from "../actionCreators/asyncIncrement"
 import { connect } from "../bind_react/connect"
+import { syncDecrement } from "../actionCreators/syncDecrement"
+import { syncIncrement } from "../actionCreators/syncIncrement"
+
 function App(props) {
     const { state, dispatch } = props
     return (
