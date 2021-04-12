@@ -10,6 +10,7 @@ A Predictable State Management 👀.
 
 👍 Improve create your custom middleware with ease.
 
+👍 Included basic middlewares
 ## Installation
 
 Using git:
