@@ -21,7 +21,6 @@ const loggerMiddleware = (storeAPI) => {
     return function wrapperDispatch(next) {
         return function handleActionDispatching(action) {
             try {
-                window.next2 = next
                 coloredLogger(
                     "<--prev state-->",
                     "#f73378",
@@ -54,7 +53,6 @@ const loggerMiddleware = (storeAPI) => {
                     undefined,
                     "green"
                 );
-                return "hello"
             } catch (error) {
                 next(action)
                 console.error(error.message);
