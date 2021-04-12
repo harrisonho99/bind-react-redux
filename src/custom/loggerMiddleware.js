@@ -1,5 +1,5 @@
 
-//heppler colored
+//helper colored
 function coloredLogger(
     content,
     background = "transparent",

@@ -13,7 +13,7 @@ const store = createStore(combineReducers, undefined,
     applyMiddleware(loggerMiddleware, thunk)
 );
 
-// window.store = store
+
 const rootElement = document.getElementById("root");
 
 

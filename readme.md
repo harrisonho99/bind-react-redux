@@ -14,9 +14,16 @@ A Predictable State Management 👀.
 
 Using git:
 
-``` git
+``` bash
 git clone https://github.com/hotsnow199/bind-react-redux
 ```
+
+Using npm:
+
+``` bash
+npm install bind-react-redux
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
