@@ -17,10 +17,13 @@ function coloredLogger(
     }
 }
 //logger middleware
-const loggerMiddleware = (storeAPI) => {
+const logger = (storeAPI) => {
     return function wrapperDispatch(next) {
         return function handleActionDispatching(action) {
             try {
+                if (typeof action !== "object") {
+                    return next(action)
+                }
                 coloredLogger(
                     "<--prev state-->",
                     "#f73378",
@@ -61,4 +64,4 @@ const loggerMiddleware = (storeAPI) => {
     };
 };
 
-export { loggerMiddleware };
+export { logger };

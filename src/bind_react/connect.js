@@ -1,4 +1,4 @@
-import React from "react";
+import { PureComponent } from "react";
 import ReactReduxContext from "./ReactReduxContext";
 
 
@@ -9,16 +9,22 @@ import ReactReduxContext from "./ReactReduxContext";
 **/
 export function connect(mapStateToProps, mapDispatchToProps) {
     return function (ConnectedComponent) {
-        return class extends React.Component {
+        return class extends PureComponent {
             constructor(props) {
                 super(props);
                 this.state = { comsumerState: {} }
             }
+
             listenStateChange = (subscribe, getState) => {
                 // accept subscribe function from store and update the UI
-                subscribe(() => {
+                this.unSubscribe = subscribe(() => {
                     this.setState({ comsumerState: getState() })
                 })
+            }
+            componentWillUnmount = () => {
+                if (typeof this.unSubscribe === "function") {
+                    this.unSubscribe()
+                }
             }
             render() {
                 let consumeState

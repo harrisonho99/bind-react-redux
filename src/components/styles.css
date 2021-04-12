@@ -1,4 +1,20 @@
+html {
+  background-color: whitesmoke;
+}
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+h1 {
+  color: #ad1457;
+}
+button {
+  color: white;
+  border: none;
+  background-color: #d81b60;
+  height: 50px;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
 }

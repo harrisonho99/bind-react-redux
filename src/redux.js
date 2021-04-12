@@ -11,6 +11,7 @@ export const createStore = (reducer, defaultState, middleware) => {
     let listMiddleware
     let index = 0
     let queueMiddleware = []
+    let isDispatching = false
     var store = {
         getState,
         subscribe,
@@ -33,18 +34,20 @@ export const createStore = (reducer, defaultState, middleware) => {
         state = reducer(undefined, {});
     }
     // setState return copy of state for  prevent mutate the internal state
+    // i relized that clone state cause performance problems
     function getState() {
-        return JSON.parse(JSON.stringify(state));
+        // return JSON.parse(JSON.stringify(state));
+        return state
     };
     //subscribe take arggument of functions
-    function subscribe(...listeners) {
-        const listOfListener = listeners
-        listOfListener.forEach((listener) => {
-            if (typeof listener !== "function") {
-                throw Error("Listener must be function");
-            }
-            listenerArray.push(listener);
-        });
+    function subscribe(listener) {
+        if (typeof listener !== "function") {
+            throw Error("Listener must be function");
+        }
+        listenerArray.push(listener);
+        return function unSubscribe() {
+            listenerArray = listenerArray.filter((element) => listener !== element)
+        }
     }
 
     //next middleware
@@ -56,9 +59,12 @@ export const createStore = (reducer, defaultState, middleware) => {
     }
     //dispatch take action as argument
     function dispatch(action) {
+
         /*if middleware has applied,
         store will not dispatch immediately,
         instead it have piped to middlewares*/
+
+        isDispatching = true
         if (isApplymiddleware && !(index > listMiddleware.length - 1)) {
             queueMiddleware[index](action)
         }
@@ -74,9 +80,10 @@ export const createStore = (reducer, defaultState, middleware) => {
                         listener();
                     });
                 }
-
             }
         }
+
+
 
     };
     return store
