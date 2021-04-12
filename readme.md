@@ -15,7 +15,7 @@ A Predictable State Management 👀.
 Using git:
 
 ``` bash
-git clone https://github.com/hotsnow199/bind-react-redux reduxAPI
+git clone https://github.com/hotsnow199/bind-react-redux 
 ```
 
 ## Contributing
