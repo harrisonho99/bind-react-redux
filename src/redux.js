@@ -37,8 +37,8 @@ export const createStore = (reducer, defaultState, middleware) => {
         return JSON.parse(JSON.stringify(state));
     };
     //subscribe take arggument of functions
-    function subscribe() {
-        const listOfListener = Array.from(arguments);
+    function subscribe(...listeners) {
+        const listOfListener = listeners
         listOfListener.forEach((listener) => {
             if (typeof listener !== "function") {
                 throw Error("Listener must be function");
