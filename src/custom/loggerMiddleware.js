@@ -17,51 +17,41 @@ function coloredLogger(
     }
 }
 //logger middleware
-const logger = (storeAPI) => {
-    return function wrapperDispatch(next) {
-        return function handleActionDispatching(action) {
-            try {
-                if (typeof action !== "object") {
-                    return next(action)
-                }
-                coloredLogger(
-                    "<--prev state-->",
-                    "#f73378",
-                    2,
-                    "white",
-                    12,
-                    storeAPI.getState()
-                );
-                // pipe action
-                next(action);
-                coloredLogger(
-                    " action: " + action.type,
-                    undefined,
-                    0,
-                    "#304ffe",
-                    12
-                );
-                //
-                coloredLogger(
-                    "<--next state-->",
-                    "#14a37f",
-                    2,
-                    "white",
-                    12,
-                    storeAPI.getState()
-                );
-                coloredLogger(
-                    "------------------------",
-                    undefined,
-                    undefined,
-                    "green"
-                );
-            } catch (error) {
-                next(action)
-                console.error(error.message);
-            }
-        };
-    };
+const logger = (storeAPI) => (next) => (action) => {
+    if (typeof action !== "object") {
+        return next(action)
+    }
+    coloredLogger(
+        "<--prev state-->",
+        "#f73378",
+        2,
+        "white",
+        12,
+        storeAPI.getState()
+    );
+    // pipe action
+    next(action);
+    coloredLogger(
+        " action: " + action.type,
+        undefined,
+        0,
+        "#304ffe",
+        12
+    );
+    coloredLogger(
+        "<--next state-->",
+        "#14a37f",
+        2,
+        "white",
+        12,
+        storeAPI.getState()
+    );
+    coloredLogger(
+        "------------------------",
+        undefined,
+        undefined,
+        "green"
+    );
 };
 
 export { logger };
