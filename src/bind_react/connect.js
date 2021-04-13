@@ -27,8 +27,7 @@ export function connect(mapStateToProps, mapDispatchToProps) {
                 }
             }
             render() {
-                let consumeState
-                let consumeDispatch
+
                 return (
                     <ReactReduxContext.Consumer>
                         {({ dispatch, getState, subscribe }) => {
@@ -36,12 +35,12 @@ export function connect(mapStateToProps, mapDispatchToProps) {
                             this.listenStateChange(subscribe, getState)
                             //check what function consumer want to use
                             if (mapStateToProps && typeof mapStateToProps === "function") {
-                                consumeState = mapStateToProps(getState()); // {state}
+                                this.consumeState = mapStateToProps(getState()); // {state}
                             }
                             if (mapDispatchToProps && typeof mapDispatchToProps === "function") {
-                                consumeDispatch = mapDispatchToProps(dispatch); // {dispatch}
+                                this.consumeDispatch = mapDispatchToProps(dispatch); // {dispatch}
                             }
-                            return < ConnectedComponent {...consumeDispatch} {...consumeState} {...this.props} />
+                            return < ConnectedComponent {...this.consumeDispatch} {...this.consumeState} {...this.props} />
                         }}
                     </ReactReduxContext.Consumer>
                 );

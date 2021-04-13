@@ -29,10 +29,11 @@ function App(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    return { state }
-}
-const mapDispatchToProps = (dispatch) => {
-    return ({ dispatch })
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
+// const mapStateToProps = (state) => {
+//     return { state }
+// }
+// const mapDispatchToProps = (dispatch) => {
+//     return ({ dispatch })
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
