@@ -1,5 +1,4 @@
 import { Component } from "react";
-import PropTypes from "prop-types";
 import ReactReduxContext from "./ReactReduxContext";
 
 export default class Provider extends Component {
@@ -15,10 +14,4 @@ export default class Provider extends Component {
     }
 }
 
-Provider.propTypes = {
-    store: PropTypes.shape({
-        subscribe: PropTypes.func.isRequired,
-        getState: PropTypes.func.isRequired,
-        dispatch: PropTypes.func.isRequired
-    })
-};
+
