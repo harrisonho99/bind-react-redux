@@ -1,6 +1,6 @@
-# Bundled react-redux and redux into small
+# Bring react-redux and redux into small
 
-A Predictable State Management 👀.
+A Predictable, Subscribe State Management 👀.
 
 💩 Perfomance problem with alot of reducers.
 
