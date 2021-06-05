@@ -2,13 +2,15 @@
 
 A Predictable State Management 👀.
 
-💩 Using old redux getState function return a reference to the local state instead of create a clone of that, can easily mutated this may not predictable anymore.
+💩 Perfomance problem with alot of reducers.
 
 💩 Install both (react-redux, redux) packages may not necessary.
 
 👎 Too much middlewares installed in your project.
 
-👍 Improve create your custom middleware with ease.
+🌷 Intergrating with Nextjs without boilerplate
+
+✅ Improve create your custom middleware with ease.
 
 👍 Included basic middlewares
 ## Installation
