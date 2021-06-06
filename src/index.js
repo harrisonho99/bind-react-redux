@@ -2,9 +2,9 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import Provider from './bind_react/Provider';
 import App from './components/App';
-import { makeStore } from './makeStore';
+import { makeStore } from './makeStore.out';
 import combineReducers from './reducers/index';
-import { applyMiddleware } from './applyMiddleware';
+import { applyMiddleware } from './applyMiddleware.out';
 import { logger } from './custom/loggerMiddleware';
 import { thunk } from './custom/thunkMiddlware';
 
