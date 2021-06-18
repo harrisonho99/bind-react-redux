@@ -15,7 +15,6 @@ function App(props) {
       <button
         onClick={() => {
           const incre = asyncIncrement();
-          console.log({ incre });
           dispatch(incre);
         }}
       >
@@ -25,7 +24,6 @@ function App(props) {
       <button
         onClick={() => {
           const decre = syncDecrement();
-          console.log({ decre });
           dispatch(decre);
         }}
       >

@@ -13,7 +13,6 @@ const store = makeStore(
   undefined,
   applyMiddleware(logger, thunk)
 );
-console.log({ store });
 
 const rootElement = document.getElementById('root');
 
