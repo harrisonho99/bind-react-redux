@@ -8,7 +8,7 @@ A Predictable, Subscribe State Management 👀.
 
 👎 Too much middlewares installed in your project.
 
-🌷 Intergrating with Nextjs without boilerplate
+🌞 Intergrate to Nextjs with no configuration
 
 ✅ Improve create your custom middleware with ease.
 
