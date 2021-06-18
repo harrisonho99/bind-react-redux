@@ -7,7 +7,7 @@ const applyMiddleware = (...agrs) => {
   });
   // the store know valid applyMiddleware function depend on this name of funtion returned
   return () => {
-    return middlewares; // Funtion[]
+    return middlewares; /** @type Funtion[] middlewares */
   };
 };
 export { applyMiddleware };

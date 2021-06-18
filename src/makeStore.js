@@ -24,15 +24,14 @@ export const makeStore = (reducer, defaultState, middleware) => {
     listMiddleware.forEach((singleMidleware) => {
       queueMiddleware.push(singleMidleware(store)(next));
     });
+  } else if (middleware && typeof middleware !== 'function') {
+    throw new Error('Invalid middleware');
   }
 
-  //check if has default state
-  if (typeof defaultState === 'object') {
-    state = defaultState;
-  } else {
-    // if not init internal state with dummy action
-    state = reducer(undefined, {});
-  }
+  //init internal state with dummy action
+  // state = reducer(undefined, {});
+  //  reducer(undefined, {});
+
   // setState return copy of state for  prevent mutate the internal state
   // i relized that clone state cause performance problems
   function getState() {
@@ -61,7 +60,7 @@ export const makeStore = (reducer, defaultState, middleware) => {
   function dispatch(action) {
     /*if middleware has applied,
         store will not dispatch immediately,
-        instead it have piped to middlewares*/
+        instead it have piped storeAPI, action to those middlewares */
 
     isDispatching = true;
     if (isApplymiddleware && !(index > listMiddleware.length - 1)) {
@@ -73,7 +72,7 @@ export const makeStore = (reducer, defaultState, middleware) => {
             if not strictly equal invoke all subscribers */
       if (newState !== state) {
         state = newState;
-        if (listenerArray.length > 0) {
+        if (listenerArray.length) {
           listenerArray.forEach((listener) => {
             listener();
           });
@@ -81,5 +80,11 @@ export const makeStore = (reducer, defaultState, middleware) => {
       }
     }
   }
+  store.dispatch({});
+  //check if has default state
+  if (typeof defaultState === 'object') {
+    state = { ...state, ...defaultState };
+  }
+
   return store;
 };

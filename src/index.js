@@ -13,13 +13,14 @@ const store = makeStore(
   undefined,
   applyMiddleware(logger, thunk)
 );
+console.log({ store });
 
 const rootElement = document.getElementById('root');
 
 // Demo with react
 ReactDOM.render(
   <StrictMode>
-    <Provider store={store}>
+    <Provider value={store}>
       <App />
     </Provider>
   </StrictMode>,

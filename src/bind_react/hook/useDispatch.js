@@ -1,6 +1,5 @@
-import { useContext, useMemo } from "react"
-import ReactReduxContext from "../ReactReduxContext"
-// this hook should not use frequently
+import { useContext } from 'react';
+import ReactReduxContext from '../ReactReduxContext';
 export const useDispatch = () => {
-    return useContext(ReactReduxContext).dispatch
-}
+  return useContext(ReactReduxContext).dispatch;
+};
